@@ -53,3 +53,20 @@ class DoublyLinkedList:
         node.next = None
 
         return node
+
+    def remove_back(self) -> Node | None:
+        if self.tail is None:
+            return None
+
+        node = self.tail
+        self.tail = node.prev
+
+        if self.tail is None:
+            self.head = None
+        else:
+            self.tail.next = None
+
+        node.prev = None
+        node.next = None
+
+        return node
