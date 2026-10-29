@@ -24,3 +24,15 @@ class DoublyLinkedList:
 
         self.head = node
         return node
+
+    def insert_back(self, data) -> Node:
+        node = Node(data=data)
+        node.prev = self.tail
+
+        if self.tail is None:
+            self.head = node
+        else:
+            self.tail.next = node
+
+        self.tail = node
+        return node
