@@ -13,7 +13,7 @@ class DoublyLinkedList:
         self.head = None
         self.tail = None
 
-    def insert_front(self, data)-> Node:
+    def insert_front(self, data):
         node = Node(data=data)
         node.next = self.head
 
@@ -25,7 +25,7 @@ class DoublyLinkedList:
         self.head = node
         return node
 
-    def insert_back(self, data) -> Node:
+    def insert_back(self, data):
         node = Node(data=data)
         node.prev = self.tail
 
@@ -37,7 +37,7 @@ class DoublyLinkedList:
         self.tail = node
         return node
 
-    def remove_front(self)-> Node | None:
+    def remove_front(self):
         if self.head is None:
             return None
 
@@ -54,7 +54,7 @@ class DoublyLinkedList:
 
         return node
 
-    def remove_back(self) -> Node | None:
+    def remove_back(self):
         if self.tail is None:
             return None
 
@@ -69,4 +69,32 @@ class DoublyLinkedList:
         node.prev = None
         node.next = None
 
+        return node
+
+    def remove_node(self, node):
+        if node is None:
+            return None
+
+        if node is self.head:
+            return self.remove_front()
+        if node is self.tail:
+            return self.remove_back()
+
+        node.prev.next = node.next
+        node.next.prev = node.prev
+
+        node.prev = None
+        node.next = None
+
+        return node
+
+    def move_to_front(self, node):
+        if node is None or node is self.head:
+            return node
+
+        self.remove_node(node)
+
+        node.next = self.head
+        self.head.prev = node
+        self.head = node
         return node
