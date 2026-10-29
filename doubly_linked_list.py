@@ -36,3 +36,20 @@ class DoublyLinkedList:
 
         self.tail = node
         return node
+
+    def remove_front(self)-> Node | None:
+        if self.head is None:
+            return None
+
+        node = self.head
+        self.head = node.next
+
+        if self.head is None:
+            self.tail = None
+        else:
+            self.head.prev = None
+
+        node.prev = None
+        node.next = None
+
+        return node
